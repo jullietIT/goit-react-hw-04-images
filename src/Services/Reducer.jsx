@@ -15,10 +15,8 @@ const reducer = (
   }
 ) => {
   switch (type) {
-    case 'handleSetQuery':
-      return { ...state, query: query };
-    case 'handleSubmitForm':
-      return { ...state, page: page, isPending: isPending };
+    case 'handleSubmit':
+      return { ...state, page: page, isPending: isPending, query: query };
     case 'handleTogleModal':
       return {
         ...state,

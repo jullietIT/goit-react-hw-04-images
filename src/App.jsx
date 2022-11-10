@@ -24,12 +24,11 @@ function App() {
     modalAlt,
     total,
   } = state;
-  const onSubmit = e => {
-    e.preventDefault();
 
+  const onSubmit = query => {
     dispatch({
-      type: 'handleSubmitForm',
-      payload: { page: 1, isPending: true },
+      type: 'handleSubmit',
+      payload: { page: 1, isPending: true, query },
     });
   };
 

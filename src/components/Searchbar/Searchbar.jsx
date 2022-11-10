@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { ImSearch } from 'react-icons/im';
 import s from './Searchbar.module.css';
@@ -12,23 +12,27 @@ export function Searchbar({ onSubmit }) {
     setSearchText(e.target.value);
   };
 
-  // const handleSubmitForm = e => {
-  //   e.preventDefault();
-  //   if (query.trim() === '') {
-  //     return toast('enter your request please!', {
-  //       position: 'top-center',
-  //       hideProgressBar: true,
-  //     });
-  //   }
-  //   dispatch({
-  //     type: 'handleSubmitForm',
-  //     payload: { page: 1, isPending: true },
-  //   });
-  // };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const normaliseRequest = searchText.toLoverCase().trim();
+    if (!normaliseRequest) {
+      return toast('enter your request please!', {
+        position: 'top-center',
+        hideProgressBar: true,
+      });
+    }
+    //   dispatch({
+    //     type: 'handleSubmitForm',
+    //     payload: { page: 1, isPending: true },
+    //   });
+    // };
+    onSubmit(normaliseRequest);
+    setSearchText('');
+  };
 
   return (
     <div className={s.Searchbar}>
-      <form className={s.SearchForm} onSubmit={onSubmit}>
+      <form className={s.SearchForm} onSubmit={handleSubmit}>
         <button type="submit" className={s.SearchFormButton}>
           <span>
             <ImSearch />
@@ -54,6 +58,7 @@ export function Searchbar({ onSubmit }) {
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  // handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Searchbar;
