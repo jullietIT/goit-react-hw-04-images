@@ -14,7 +14,7 @@ export function Searchbar({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const normaliseRequest = searchText.toLoverCase().trim();
+    const normaliseRequest = searchText.toLowerCase().trim();
     if (!normaliseRequest) {
       return toast('enter your request please!', {
         position: 'top-center',
